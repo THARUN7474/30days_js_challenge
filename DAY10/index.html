@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myElement {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="myParagraph">Original text</p>
+    <button id="myButton">Change Text</button>
+    <img id="myImage" src="image.jpg" alt="Image" style="display: block;">
+    <div id="myElement">Hover over me</div>
+    <input type="text" id="myInput" placeholder="Type something">
+    <p id="displayText"></p>
+    <form id="myForm">
+        <input type="text" name="name" placeholder="Name">
+        <button type="submit">Submit</button>
+    </form>
+    <select id="mySelect">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+    <p id="selectedValue"></p>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <div id="parent">
+        <button id="addChild">Add Child</button>
+    </div>
+
+
+    <script>
+        document.getElementById("myList").addEventListener("click", (event) => {
+            if (event.target.tagName === "LI") {
+                console.log(`Clicked item: ${event.target.textContent}`);
+            }
+        });
+        document.getElementById("parent").addEventListener("click", (event) => {
+            if (event.target.className === "child") {
+                console.log(`Clicked child: ${event.target.textContent}`);
+            }
+        });
+
+        document.getElementById("addChild").addEventListener("click", () => {
+            let newChild = document.createElement("div");
+            newChild.className = "child";
+            newChild.textContent = "New Child";
+            document.getElementById("parent").appendChild(newChild);
+        });
+    </script>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+            let formData = new FormData(event.target);
+            console.log(Object.fromEntries(formData));
+        });
+        document.getElementById("mySelect").addEventListener("change", () => {
+            document.getElementById("selectedValue").textContent = document.getElementById("mySelect").value;
+        });
+    </script>
+
+
+    <script>
+        document.getElementById("myInput").addEventListener("keydown", (event) => {
+            console.log(`Key pressed: ${event.key}`);
+        });
+        document.getElementById("myInput").addEventListener("keyup", () => {
+            document.getElementById("displayText").textContent = document.getElementById("myInput").value;
+        });
+    </script>
+
+    <script>
+        document.getElementById("myElement").addEventListener("mouseover", () => {
+            document.getElementById("myElement").style.backgroundColor = "lightblue";
+        });
+        document.getElementById("myElement").addEventListener("mouseout", () => {
+            document.getElementById("myElement").style.backgroundColor = "";
+        });
+    </script>
+
+    <script>
+        document.getElementById("myButton").addEventListener("click", () => {
+            document.getElementById("myParagraph").textContent = "Updated text";
+        });
+        document.getElementById("myImage").addEventListener("dblclick", () => {
+            let img = document.getElementById("myImage");
+            img.style.display = img.style.display === "none" ? "block" : "none";
+        });
+    </script>
+</body>
+
+</html>

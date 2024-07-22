@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .myClass {
+            padding: 10px;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+
+        #myElement {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="myParagraph">Original text</p>
+    <div class="myClass">This is a div with a class</div>
+    <p id="removeMe">Remove this paragraph</p>
+    <img id="myImage" src="old-image.jpg" alt="Old Image">
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <div id="myElement">Hover over me</div>
+    <button id="myButton">Change Text1</button>
+    <button onclick="changeText()">Change Text2</button>
+    <script src="index.js"></script>
+    <script>
+        let newListItem = document.createElement("li");
+        newListItem.textContent = "New Item";
+        document.getElementById("myList").appendChild(newListItem);
+
+        function changeText() {
+            document.getElementById("myParagraph").textContent = "New text";
+            document.querySelector(".myClass").textContent = "This is a new div";
+            document.getElementById("myList").removeChild(document.getElementById("myList").lastChild);
+            document.getElementById("myList").appendChild(newListItem);
+            document.getElementById("myList").getElementsByTagName("li")[1].style.backgroundColor = "yellow";
+            document.getElementById("myList").getElementsByTagName("li")[1].style.color = "black";
+            document.getElementById("myList").getElementsByTagName("li")[1].style.fontWeight = "bold";
+            document.getElementById("myList").getElementsByTagName("li")[1].style.textDecoration = "underline";
+            document.getElementById("myList").getElementsByTagName("li")[1].style.cursor = "pointer";
+            document.getElementById("myList").getElementsByTagName("li")[1].addEventListener("click", function () {
+                alert("Clicked on new item");
+            });
+        }
+    </script>
+</body>
+
+</html>
